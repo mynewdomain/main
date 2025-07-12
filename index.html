@@ -27,6 +27,11 @@
           const data = await response.json();
   
           const current = data.current_condition[0];
+          const weatherDesc = current.weatherDesc[0].value.toLowerCase();
+          console.log(data);
+          /*if(weatherDesc.includes()){
+            
+          }*/
           const output = `
             <img src=${}
             <h2>Καιρός σε ${city.charAt(0).toUpperCase() + city.slice(1)}</h2>
