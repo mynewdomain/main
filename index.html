@@ -17,14 +17,11 @@
   <body>
     <div id="container">
         <h1>Weather App</h1>
-        <form onsubmit="getWeather(event)">
-          <input type="text" id="city" placeholder="Δώστε όνομα πόλης">
-          <button onclick="getWeather()">Get Weather</button>
-        </form>
+        <input type="text" id="city" placeholder="Δώστε όνομα πόλης">
+        <button type="button" onclick="getWeather()">Get Weather</button>
         <div id="output"></div>
          <script>
-          async function getWeather(event) {
-              event.preventDefault(); 
+          async function getWeather() {
             const city = document.getElementById("city").value;
             const url = "https://wttr.in/"+city+"?format=j1";
       
