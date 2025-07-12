@@ -17,11 +17,14 @@
   <body>
     <div id="container">
         <h1>Weather App</h1>
-        <input type="text" id="city" placeholder="Δώστε όνομα πόλης">
-        <button onclick="getWeather()">Get Weather</button>
+        <form onsubmit="getWeather(event)">
+          <input type="text" id="city" placeholder="Δώστε όνομα πόλης">
+          <button onclick="getWeather()">Get Weather</button>
+        </form>
         <div id="output"></div>
          <script>
-          async function getWeather() {
+          async function getWeather(event) {
+              event.preventDefault(); 
             const city = document.getElementById("city").value;
             const url = "https://wttr.in/"+city+"?format=j1";
       
@@ -34,6 +37,59 @@
               const weather=data.weather[0].hourly[0];
               const iconUrl = current.weatherIconUrl[0].value;
               console.log(data);
+              const weatherCode = current.weatherCode; // e.g. 116
+              const icon = codeToFilename[weatherCode];
+              const codeToFilename = {
+                113: "wsymbol_0001_sunny.png",                         // Clear / Sunny
+                116: "wsymbol_0002_sunny_intervals.png",               // Partly cloudy
+                119: "wsymbol_0003_cloudy.png",                        // Cloudy
+                122: "wsymbol_0004_black_low_cloud.png",               // Overcast
+                143: "wsymbol_0006_mist.png",                          // Mist
+                176: "wsymbol_0017_cloudy_with_light_rain.png",        // Patchy rain
+                179: "wsymbol_0025_light_snow_showers.png",            // Patchy snow
+                182: "wsymbol_0013_sleet_showers.png",                 // Patchy sleet
+                185: "wsymbol_0021_rain_and_snow_mix.png",             // Freezing drizzle
+                200: "wsymbol_0024_thunderstorms.png",                 // Thundery outbreaks
+                227: "wsymbol_0025_light_snow_showers.png",            // Blowing snow
+                230: "wsymbol_0033_heavy_snow.png",                    // Blizzard
+                248: "wsymbol_0007_fog.png",                           // Fog
+                260: "wsymbol_0007_fog.png",                           // Freezing fog
+                263: "wsymbol_0017_cloudy_with_light_rain.png",        // Patchy light drizzle
+                266: "wsymbol_0017_cloudy_with_light_rain.png",        // Light drizzle
+                281: "wsymbol_0021_rain_and_snow_mix.png",             // Freezing drizzle
+                284: "wsymbol_0021_rain_and_snow_mix.png",             // Heavy freezing drizzle
+                293: "wsymbol_0018_cloudy_with_heavy_rain.png",        // Patchy light rain
+                296: "wsymbol_0018_cloudy_with_heavy_rain.png",        // Light rain
+                299: "wsymbol_0019_cloudy_with_heavy_rain.png",        // Moderate rain
+                302: "wsymbol_0019_cloudy_with_heavy_rain.png",        // Heavy rain
+                305: "wsymbol_0019_cloudy_with_heavy_rain.png",        // Heavy rain showers
+                308: "wsymbol_0019_cloudy_with_heavy_rain.png",        // Torrential rain
+                311: "wsymbol_0013_sleet_showers.png",                 // Freezing rain
+                314: "wsymbol_0013_sleet_showers.png",                 // Heavy freezing rain
+                317: "wsymbol_0013_sleet_showers.png",                 // Light sleet
+                320: "wsymbol_0013_sleet_showers.png",                 // Moderate or heavy sleet
+                323: "wsymbol_0025_light_snow_showers.png",            // Patchy light snow
+                326: "wsymbol_0025_light_snow_showers.png",            // Light snow
+                329: "wsymbol_0029_heavy_snow_showers.png",            // Moderate snow
+                332: "wsymbol_0029_heavy_snow_showers.png",            // Heavy snow
+                335: "wsymbol_0029_heavy_snow_showers.png",            // Heavy snow showers
+                338: "wsymbol_0033_heavy_snow.png",                    // Blizzard
+                350: "wsymbol_0021_rain_and_snow_mix.png",             // Ice pellets
+                353: "wsymbol_0017_cloudy_with_light_rain.png",        // Light rain shower
+                356: "wsymbol_0019_cloudy_with_heavy_rain.png",        // Heavy rain shower
+                359: "wsymbol_0019_cloudy_with_heavy_rain.png",        // Torrential rain shower
+                362: "wsymbol_0013_sleet_showers.png",                 // Light sleet shower
+                365: "wsymbol_0013_sleet_showers.png",                 // Heavy sleet shower
+                368: "wsymbol_0025_light_snow_showers.png",            // Light snow shower
+                371: "wsymbol_0029_heavy_snow_showers.png",            // Heavy snow shower
+                374: "wsymbol_0021_rain_and_snow_mix.png",             // Light ice pellets shower
+                377: "wsymbol_0021_rain_and_snow_mix.png",             // Heavy ice pellets shower
+                386: "wsymbol_0024_thunderstorms.png",                 // Patchy thunderstorm
+                389: "wsymbol_0024_thunderstorms.png",                 // Moderate thunderstorm
+                392: "wsymbol_0024_thunderstorms.png",                 // Thundersnow
+                395: "wsymbol_0033_heavy_snow.png"                     // Heavy snow / thunder
+              };
+              const iconUrl = "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/"+icon;
               const output = `
                 <img src="${iconUrl}">
                 <h2>Καιρός σε ${city.charAt(0).toUpperCase() + city.slice(1)}</h2>
