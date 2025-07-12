@@ -4,15 +4,16 @@
       First app
     </title>
     <style>
-      #soon{
-        color: red;
-        font-weight: bold;
-        text-align: center;
-        font-size: 50px;
-      }
+     #container{
+       width:100%;
+       height:100vh;
+       display:flex;
+       flex-direaction:column;
+     }
     </style>
   </head>
-  <body">
+  <body>
+    <div id="container"></div>
     <h1>Weather App</h1>
     <input type="text" id="city" placeholder="Δώστε όνομα πόλης">
     <button onclick="getWeather()">Get Weather</button>
