@@ -28,7 +28,7 @@
   
           const current = data.current_condition[0];
           const weatherDesc = current.weatherDesc[0].value.toLowerCase();
-          const weather=data.weather.hourly.DewPointC[0];
+          const weather=data.weather[0].hourly[0].DewPointC[0];
           console.log(data);
           const output = `
             
