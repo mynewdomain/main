@@ -35,7 +35,6 @@
               const current = data.current_condition[0];
               const weatherDesc = current.weatherDesc[0].value.toLowerCase();
               const weather=data.weather[0].hourly[0];
-              const iconUrl = current.weatherIconUrl[0].value;
               console.log(data);
               const weatherCode = current.weatherCode; // e.g. 116
               const icon = codeToFilename[weatherCode];
