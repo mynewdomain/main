@@ -16,6 +16,32 @@
     </script>
   </head>
   <body style="display:flex; flex-direction:column;">
-    <p id="soon">coming soon</p>
+    <h1>Weather App</h1>
+    <input type="text" id="city" placeholder="Enter city name">
+    <button onclick="getWeather()">Get Weather</button>
+    <div id="output"></div>
+     <script>
+      async function getWeather() {
+        const city = document.getElementById("city").value || "london";
+        const url = `https://wttr.in/${city}?format=j1`;
+  
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+  
+          const current = data.current_condition[0];
+          const output = `
+            <h2>Weather in ${city.charAt(0).toUpperCase() + city.slice(1)}</h2>
+            <p>Temperature: ${current.temp_C}°C</p>
+            <p>Feels Like: ${current.FeelsLikeC}°C</p>
+            <p>Condition: ${current.weatherDesc[0].value}</p>
+          `;
+          document.getElementById("output").innerHTML = output;
+        } catch (err) {
+          document.getElementById("output").innerHTML = `<p>Error getting weather data.</p>`;
+          console.error("Fetch error:", err);
+        }
+      }
+    </script>
   </body>
 </html>
