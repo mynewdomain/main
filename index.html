@@ -20,7 +20,7 @@
      <script>
       async function getWeather() {
         const city = document.getElementById("city").value || "london";
-        const url = `https://wttr.in/${city}?format=j1`;
+        const url = "https://wttr.in/"+city+"?format=j1";
   
         try {
           const response = await fetch(url);
@@ -28,10 +28,10 @@
   
           const current = data.current_condition[0];
           const output = `
-            <h2>Weather in ${city.charAt(0).toUpperCase() + city.slice(1)}</h2>
-            <p>Temperature: ${current.temp_C}°C</p>
-            <p>Feels Like: ${current.FeelsLikeC}°C</p>
-            <p>Condition: ${current.weatherDesc[0].value}</p>
+            <h2>Καιρός σε ${city.charAt(0).toUpperCase() + city.slice(1)}</h2>
+            <p>Θερμοκρασία: ${current.temp_C}°C</p>
+            <p>Αίσθηση: ${current.FeelsLikeC}°C</p>
+            <p>Συνθήκες: ${current.weatherDesc[0].value}</p>
           `;
           document.getElementById("output").innerHTML = output;
         } catch (err) {
