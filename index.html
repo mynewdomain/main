@@ -1,7 +1,7 @@
 <html lang="en">
   <head>
     <title>
-      First app
+      Weather App
     </title>
     <style>
       *{
@@ -38,7 +38,6 @@
             try {
               const response = await fetch(url);
               const data = await response.json();
-      
               const current = data.current_condition[0];
               const weatherDesc = current.weatherDesc[0].value.toLowerCase();
               const weather=data.weather[0].hourly[0];
@@ -103,7 +102,16 @@
                 <p>Αίσθηση: ${current.FeelsLikeC}°C</p>
                 <p>Συνθήκες: ${current.weatherDesc[0].value}</p>
               `;
-              document.getElementById("output").innerHTML = output;
+              const nextdays=`
+                <div style="display:flex;flex-direction:row;overflow:scroll;"
+                    <img src="${iconUrl}" style="width:100%;height:50%;">
+                    <h2>Καιρός σε ${city.charAt(0).toUpperCase() + city.slice(1)}</h2>
+                    <p>Θερμοκρασία: ${current.temp_C}°C</p>
+                    <p>Αίσθηση: ${current.FeelsLikeC}°C</p>
+                    <p>Συνθήκες: ${current.weatherDesc[0].value}</p>
+                </div>
+              `;
+              document.getElementById("output").innerHTML = output+nextdays;
             } catch (err) {
               document.getElementById("output").innerHTML = `<p>Error getting weather data.</p>`;
               console.error("Fetch error:", err);
