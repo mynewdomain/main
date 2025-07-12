@@ -102,7 +102,7 @@
                 <p>Αίσθηση: ${current.FeelsLikeC}°C</p>
                 <p>Συνθήκες: ${current.weatherDesc[0].value}</p>
               `;
-          
+            let nextdays = `<div class="forecast-container">`;
               data.weather.forEach(day => {
             const date = day.date;
             const avgTemp = day.avgtempC;
