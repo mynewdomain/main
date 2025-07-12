@@ -15,38 +15,39 @@
     </style>
   </head>
   <body>
-    <div id="container"></div>
-    <h1>Weather App</h1>
-    <input type="text" id="city" placeholder="Δώστε όνομα πόλης">
-    <button onclick="getWeather()">Get Weather</button>
-    <div id="output"></div>
-     <script>
-      async function getWeather() {
-        const city = document.getElementById("city").value;
-        const url = "https://wttr.in/"+city+"?format=j1";
-  
-        try {
-          const response = await fetch(url);
-          const data = await response.json();
-  
-          const current = data.current_condition[0];
-          const weatherDesc = current.weatherDesc[0].value.toLowerCase();
-          const weather=data.weather[0].hourly[0];
-          const iconUrl = current.weatherIconUrl[0].value;
-          console.log(data);
-          const output = `
-            <img src="${iconUrl}">
-            <h2>Καιρός σε ${city.charAt(0).toUpperCase() + city.slice(1)}</h2>
-            <p>Θερμοκρασία: ${current.temp_C}°C</p>
-            <p>Αίσθηση: ${current.FeelsLikeC}°C</p>
-            <p>Συνθήκες: ${current.weatherDesc[0].value}</p>
-          `;
-          document.getElementById("output").innerHTML = output;
-        } catch (err) {
-          document.getElementById("output").innerHTML = `<p>Error getting weather data.</p>`;
-          console.error("Fetch error:", err);
-        }
-      }
-    </script>
+    <div id="container">
+        <h1>Weather App</h1>
+        <input type="text" id="city" placeholder="Δώστε όνομα πόλης">
+        <button onclick="getWeather()">Get Weather</button>
+        <div id="output"></div>
+         <script>
+          async function getWeather() {
+            const city = document.getElementById("city").value;
+            const url = "https://wttr.in/"+city+"?format=j1";
+      
+            try {
+              const response = await fetch(url);
+              const data = await response.json();
+      
+              const current = data.current_condition[0];
+              const weatherDesc = current.weatherDesc[0].value.toLowerCase();
+              const weather=data.weather[0].hourly[0];
+              const iconUrl = current.weatherIconUrl[0].value;
+              console.log(data);
+              const output = `
+                <img src="${iconUrl}">
+                <h2>Καιρός σε ${city.charAt(0).toUpperCase() + city.slice(1)}</h2>
+                <p>Θερμοκρασία: ${current.temp_C}°C</p>
+                <p>Αίσθηση: ${current.FeelsLikeC}°C</p>
+                <p>Συνθήκες: ${current.weatherDesc[0].value}</p>
+              `;
+              document.getElementById("output").innerHTML = output;
+            } catch (err) {
+              document.getElementById("output").innerHTML = `<p>Error getting weather data.</p>`;
+              console.error("Fetch error:", err);
+            }
+          }
+        </script>
+    </div>
   </body>
 </html>
