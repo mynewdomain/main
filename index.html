@@ -28,7 +28,7 @@
   
           const current = data.current_condition[0];
           const weatherDesc = current.weatherDesc[0].value.toLowerCase();
-          const weather=data.weather.hourly;
+          const weather=data.weather.hourly.DewPointC[0];
           console.log(data);
           const output = `
             
@@ -36,7 +36,7 @@
             <p>Θερμοκρασία: ${current.temp_C}°C</p>
             <p>Αίσθηση: ${current.FeelsLikeC}°C</p>
             <p>Συνθήκες: ${current.weatherDesc[0].value}</p>
-            <p>${weather.DewPointC[0]}</p>
+            <p>${weather}</p>
           `;
           document.getElementById("output").innerHTML = output;
         } catch (err) {
