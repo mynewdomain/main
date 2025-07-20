@@ -18,10 +18,11 @@ async function getWeather() {
                 const weatherCode = current.weatherCode; // e.g. 116
                 const icon = codeToFilename[weatherCode];
                 const iconUrl = config.weatherIconsCDN+icon;
+                var today=dateFormat(data.weather[0].date);
                 output= `
                 <div class="weather-container">
                     <img src="${iconUrl}">
-                    <h2>Καιρός στην πόλη ${city.charAt(0).toUpperCase() + city.slice(1)} σήμερα ${data.weather[0].date}</h2>
+                    <h2>Καιρός στην πόλη ${city.charAt(0).toUpperCase() + city.slice(1)} σήμερα ${today}</h2>
                     <p>Θερμοκρασία: ${current.temp_C}°C</p>
                     <p>Αίσθηση: ${current.FeelsLikeC}°C</p>
                     <p>Συνθήκες: ${current.weatherDesc[0].value}</p>

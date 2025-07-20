@@ -10,3 +10,12 @@ async function ToJSON(url) {
         throw error;
     }
 }
+function dateFormat(apiDate){
+    var dateString="";
+    var date=new Date(apiDate);
+    var day=date.getDate();
+    var month=date.getMonth()+1; // Months are zero-based in JavaScript
+    var year=date.getFullYear();
+    dateString=day+"/"+month+"/"+year;
+    return dateString;
+}
