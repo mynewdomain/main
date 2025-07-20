@@ -83,8 +83,8 @@
         width: 60%;
         height: 30%;
     }
-    .forecast-day{
-        overflow:auto;
+    .forecast-container{
+        overflow-x:scroll;
     }
     
 }
