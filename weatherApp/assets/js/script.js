@@ -32,7 +32,7 @@ async function getWeather() {
                 `;
                 let nextdays = `<div class="forecast-container">`;
                 data.weather.slice(1,3).forEach(day => {
-                    const date = day.date;
+                    const date = dateFormat(day.date);
                     const avgTemp = day.avgtempC;
                     const code = day.hourly[4].weatherCode; // midday
                     const icon = codeToFilename[code];
