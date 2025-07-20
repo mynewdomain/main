@@ -59,10 +59,11 @@
     border-radius:20px;
 }
 .forecast-container {
+    border:1px solid black;
     display: flex;
     overflow-x: auto;
     margin-top: 20px;
-    gap: 20px;
+    gap: 5px;
 }
 .forecast-day {
     background: white;
@@ -84,7 +85,7 @@
         height: 30%;
     }
     .forecast-container{
-        overflow-x:scroll;
+        overflow-x:auto;
     }
     
 }
