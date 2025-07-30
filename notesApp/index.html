@@ -15,32 +15,54 @@
             <div id="dialogHeader">
                 <div id="editId" style="display:none;"></div>
                 <h2 id="dialogTitle"></h2>
-                <button type="button" id="closeBtn" onclick="closeNoteDialog()">X</button>
+                <button type="button" id="closeBtn" onclick="closeDialog(addNewNoteBg)">X</button>
             </div>
             <div id="dialogContent">
-                <input type="text" id="noteTitle"  class="inputs margins" placeholder="note title">
+                <input type="text" id="noteTitle"  class="inputs margins" placeholder="Τίτλος σημείωσης">
                 <br>
-                <textarea id="noteContentInput" class="inputs margins" placeholder="write your note here"></textarea>
+                <textarea id="noteContentInput" class="inputs margins" placeholder="Γράψτε σημειώσεις εδώ..."></textarea>
             </div>
             <div id="dialogMenu">
-                <button type="button" id="cancelBtn" class="buttons" onclick="closeNoteDialog()">Cancel</button>
+                <button type="button" id="cancelBtn" class="buttons" onclick="closeDialog(addNewNoteBg)">Ακύρωση</button>
                 <button type="button" id="SaveBtn" class="buttons"
                     onclick='saveNote(
                         document.getElementById("noteTitle").value,
                         document.getElementById("noteContentInput").value,
                         document.getElementById("editId").textContent
                     )'>
-                    Save
+                    Αποθήκευση
                 </button>
             </div>
         </div>
+    </div>
+    <div id="settingsBg">
+        <div style="display:flex; flex-direction: row; justify-content:space-between;">
+            <h2>Ρυθμίσεις</h2>
+            <button type="button" id="closeBtn" class="buttons" onclick="closeDialog(settingsBg)">X</button>
+        </div>
+        <label for="themeSelect">Θέμα:</label>
+        <select id="themeSelect">
+            <option value="light">Φωτεινό</option>
+            <option value="dark">Σκοτεινό</option>
+        </select>
+
+        <label for="sortNotes">Ταξινόμηση σημειώσεων:</label>
+        <select id="sortNotes">
+            <option value="date">Κατά ημερομηνία</option>
+            <option value="title">Κατά τίτλο</option>
+        </select>
+
+        <label for="fontSize">Μέγεθος Γραμματοσειράς:</label>
+        <input type="range" id="fontSize" min="12" max="24">
+
+        <button onclick="confirmReset()">Διαγραφή όλων των σημειώσεων</button>
     </div>
     <div id="container">
         <div id="header">
             <h1 id="title">myNotes</h1>
             <div class="btnDiv">
-                <button type="button" id="noteBtn" class="btns">Add Note</button>
-                <button type="button" id="settingsBtn" class="btns">Settings</button>
+                <button type="button" id="noteBtn" class="btns">Προσθήκη σημείωσης</button>
+                <button type="button" id="settingsBtn" class="btns">Ρυθμίσεις</button>
             </div>
         </div>
         <div id="content"></div>
