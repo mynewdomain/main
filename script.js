@@ -1,6 +1,6 @@
 var container=document.getElementById("container");
 var pageNames=["Weather App","Notes App",];
-var pageURLS=["./main/weatherApp","./main/notesApp"]
+var pageURLS=["./weatherApp","./notesApp"]
 for(var i=0;i<pageNames.length;i++){
     var page=document.createElement("div");
     page.className="pages";
