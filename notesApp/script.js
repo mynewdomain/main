@@ -3,41 +3,14 @@ const container = document.getElementById("container");
 const content = document.getElementById("content");
 const createNoteBtn = document.getElementById("noteBtn");
 const settingsBtn = document.getElementById("settingsBtn");
-
+const addNewNoteBg=document.getElementById("addNewNoteBg");
 // Φόρτωση stacks από localStorage ή δημιουργία νέων
 let notesTitle = createStack("notesTitle");
 let notesContent = createStack("notesContent");
 let notesId = createStack("notesId");
 // Προβολή παραθύρου προσθήκης σημείωσης
 function addNewNoteDialog(id=null) {
-    const window = `
-        <div id="addNewNoteBg">
-            <div id="addNewNote">
-                <div id="dialogHeader">
-                    <div id="editId" style="display:none;"></div>
-                    <h2 id="dialogTitle"></h2>
-                    <button type="button" id="closeBtn" onclick="closeNoteDialog()">X</button>
-                </div>
-                <div id="dialogContent">
-                    <input type="text" id="noteTitle"  class="inputs margins" placeholder="note title">
-                    <br>
-                    <textarea id="noteContentInput" class="inputs margins" placeholder="write your note here"></textarea>
-                </div>
-                <div id="dialogMenu">
-                    <button type="button" id="cancelBtn" class="buttons" onclick="closeNoteDialog()">Cancel</button>
-                    <button type="button" id="SaveBtn" class="buttons"
-                        onclick='saveNote(
-                            document.getElementById("noteTitle").value,
-                            document.getElementById("noteContentInput").value,
-                            document.getElementById("editId").textContent
-                        )'>
-                        Save
-                    </button>
-                </div>
-            </div>
-        </div>
-    `;
-    content.innerHTML = window;
+    addNewNoteBg.style.display="flex";
     var noteTitleToEdit=document.getElementById("noteTitle");
     var titleInput=document.getElementById("dialogTitle");
     var contentInput=document.getElementById("noteContentInput");
@@ -63,8 +36,7 @@ function addNewNoteDialog(id=null) {
 
 // Κλείσιμο του dialog
 function closeNoteDialog() {
-    const dialog = document.getElementById("addNewNoteBg");
-    if (dialog) dialog.remove();
+    addNewNoteBg.style.display = "none";
     displayNote();
 }
 

@@ -10,6 +10,31 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <div id="addNewNoteBg">
+        <div id="addNewNote">
+            <div id="dialogHeader">
+                <div id="editId" style="display:none;"></div>
+                <h2 id="dialogTitle"></h2>
+                <button type="button" id="closeBtn" onclick="closeNoteDialog()">X</button>
+            </div>
+            <div id="dialogContent">
+                <input type="text" id="noteTitle"  class="inputs margins" placeholder="note title">
+                <br>
+                <textarea id="noteContentInput" class="inputs margins" placeholder="write your note here"></textarea>
+            </div>
+            <div id="dialogMenu">
+                <button type="button" id="cancelBtn" class="buttons" onclick="closeNoteDialog()">Cancel</button>
+                <button type="button" id="SaveBtn" class="buttons"
+                    onclick='saveNote(
+                        document.getElementById("noteTitle").value,
+                        document.getElementById("noteContentInput").value,
+                        document.getElementById("editId").textContent
+                    )'>
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
     <div id="container">
         <div id="header">
             <h1 id="title">myNotes</h1>
