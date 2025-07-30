@@ -27,7 +27,6 @@
 #noteBtn{
     background-color:blue;
     color:white;
-   
 }
 /*add new note dialog*/
 #addNewNoteBg{
@@ -36,6 +35,9 @@
     width:100%;
     z-index:100000;
     position:fixed;
+    display:none;
+    justify-content:center;
+    align-items:center;
 }
 #addNewNote{
     display:flex;
