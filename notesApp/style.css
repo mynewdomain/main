@@ -118,6 +118,16 @@
     background:blue;
     color:white;
 }
+/*settings window*/
+#settingsBg{
+    background:rgb(230, 224, 224);
+    height:100vh;
+    width:100%;
+    z-index:100000;
+    position:fixed;
+    display:none;
+    flex-direction:column;
+}
 /*main content*/
 #content{
     display:flex;
