@@ -4,13 +4,14 @@ const content = document.getElementById("content");
 const createNoteBtn = document.getElementById("noteBtn");
 const settingsBtn = document.getElementById("settingsBtn");
 const addNewNoteBg=document.getElementById("addNewNoteBg");
+const settingsBg=document.getElementById("settingsBg");
 // Φόρτωση stacks από localStorage ή δημιουργία νέων
 let notesTitle = createStack("notesTitle");
 let notesContent = createStack("notesContent");
 let notesId = createStack("notesId");
-// Προβολή παραθύρου προσθήκης σημείωσης
+// Προσθήκη και επεξεργασία σημείωσης
 function addNewNoteDialog(id=null) {
-    addNewNoteBg.style.display="flex";
+    openDialog(addNewNoteBg);
     var noteTitleToEdit=document.getElementById("noteTitle");
     var titleInput=document.getElementById("dialogTitle");
     var contentInput=document.getElementById("noteContentInput");
@@ -20,24 +21,20 @@ function addNewNoteDialog(id=null) {
         if(index !== -1){
             noteTitleToEdit.value=notesTitle[index];
             contentInput.value=notesContent[index];
-            titleInput.textContent="Edit Note";
+            titleInput.textContent="Επεξεργασία σημείωσης";
             editId.textContent=id;
         }else{
              //Αν δεν βρεθεί το id στη λίστα, θεώρησέ το ως νέα σημείωση
-            titleInput.textContent="Add new note";
+            titleInput.textContent="Προσθήκη νέας σημείωσης";
             editId.textContent = noteId();
+            noteTitleToEdit.value="";
+            contentInput.value="";
         }
     }else {
-    //Κανονική νέα σημείωση
-    titleInput.textContent = "Add new note";
-    editId.textContent = noteId();
-}
-}
-
-// Κλείσιμο του dialog
-function closeNoteDialog() {
-    addNewNoteBg.style.display = "none";
-    displayNote();
+        //Κανονική νέα σημείωση
+        titleInput.textContent="Προσθήκη νέας σημείωσης";
+        editId.textContent = noteId();
+    }
 }
 
 // Αποθήκευση νέας σημείωσης
@@ -58,7 +55,7 @@ function saveNote(title,contentText,id) {
     localStorage.setItem("notesTitle", JSON.stringify(notesTitle));
     localStorage.setItem("notesContent", JSON.stringify(notesContent));
     localStorage.setItem("notesId", JSON.stringify(notesId));
-    closeNoteDialog();
+    closeDialog(addNewNoteBg);
     displayNote();
 }
 
@@ -102,12 +99,12 @@ function deleteNote(id) {
         localStorage.setItem("notesTitle", JSON.stringify(notesTitle));
         localStorage.setItem("notesContent", JSON.stringify(notesContent));
         localStorage.setItem("notesId", JSON.stringify(notesId));
-
         displayNote();
     }
 }
-
 // Σύνδεση κουμπιού "Add Note" με το dialog
 createNoteBtn.addEventListener("click", addNewNoteDialog);
+// Κουμπί ρυθμισεων
+settingsBtn.addEventListener("click",()=>openDialog(settingsBg));
 // Αρχική εμφάνιση αποθηκευμένων σημειώσεων
 displayNote();
