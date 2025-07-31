@@ -20,3 +20,25 @@ function confirmReset() {
     location.reload();
   }
 }
+function theme(opt){
+    var bg;
+    var color;
+    if(opt=="light"){
+        bg="white";
+        color="black";
+    }else if(opt=="dark"){
+        bg="black";
+        color="white";
+    }else{
+        bg="";
+        color="";
+    }
+    localStorage.setItem("theme",bg);
+    localStorage.setItem("color",color);
+    var back=localStorage.getItem("theme");
+    var color=localStorage.getItem("color");
+    console.log(back);
+    container.style.backgroundColor=back;
+    container.style.color=color;
+    
+}
