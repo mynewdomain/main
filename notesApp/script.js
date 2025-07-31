@@ -106,5 +106,25 @@ function deleteNote(id) {
 createNoteBtn.addEventListener("click", addNewNoteDialog);
 // Κουμπί ρυθμισεων
 settingsBtn.addEventListener("click",()=>openDialog(settingsBg));
+var themeSelect=document.getElementById("themeSelect");
+themeSelect.addEventListener("change",()=>{
+    theme(themeSelect.value);
+});
 // Αρχική εμφάνιση αποθηκευμένων σημειώσεων
 displayNote();
+window.addEventListener("DOMContentLoaded",()=>{
+    var savedTheme=localStorage.getItem("theme");
+    var savedColor=localStorage.getItem("color");
+    if(savedTheme){
+        container.style.backgroundColor=savedTheme;
+        container.style.color=savedColor;
+        if(savedTheme=="light"){
+            themeSelect.value="white";
+        }else if(savedTheme=="dark"){
+            themeSelect.value="black";
+        }else{
+             themeSelect.value="default";
+        }
+        
+    }
+});
