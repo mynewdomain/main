@@ -1,0 +1,6 @@
+/* Center on mobile/tablet to avoid clipping edges */
+@media (max-width: 1024px) {
+    #container {
+        justify-content: center;
+    }
+}
