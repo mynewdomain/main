@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myNotes</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="../mediaQueries.css">
     <script src="libs/stack.js" defer></script>
     <script src="libs/functions.js" defer></script>
     <script src="script.js" defer></script>
@@ -62,12 +61,13 @@
         <div id="header">
             <h1 id="title">myNotes</h1>
             <div class="btnDiv">
-                <button type="button" id="noteBtn" class="btns">Προσθήκη σημείωσης</button>
-                <button type="button" id="settingsBtn" class="btns">Ρυθμίσεις</button>
+                <button type="button" id="noteBtn" class="btns"><ion-icon class="icons" name="add-outline"></ion-icon></button>
+                <button type="button" id="settingsBtn" class="btns"><ion-icon class="icons" name="settings-outline"></ion-icon></button>
             </div>
         </div>
         <div id="content"></div>
     </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
-
