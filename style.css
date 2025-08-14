@@ -3,24 +3,25 @@
     padding:0;
     box-sizing: border-box;
 }
-#container{
-    display:flex;
-    flex-direction: row;
+#container {
+    display: flex;
     flex-wrap: wrap;
     min-height: 100vh;
-    background-image:url("main-background.jpg");
+    background-image: url("main-background.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
+
 .pages{
     background-color:white;
     border:1px solid black;
-    padding:10px;
+    padding:5px;
     margin:5px;
     cursor:pointer;
     text-align:center;
-    width:150px;
+    width:150px;      /* default size */
+    max-width: 100%;     /* but never overflow screen */
     height:100px;
     display:flex;
     justify-content:center;
