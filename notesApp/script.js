@@ -26,14 +26,14 @@ function addNewNoteDialog(id=null) {
         }else{
              //Αν δεν βρεθεί το id στη λίστα, θεώρησέ το ως νέα σημείωση
             titleInput.textContent="Προσθήκη νέας σημείωσης";
-            editId.textContent = noteId();
+            editId.textContent = createdAt();
             noteTitleToEdit.value="";
             contentInput.value="";
         }
     }else {
         //Κανονική νέα σημείωση
         titleInput.textContent="Προσθήκη νέας σημείωσης";
-        editId.textContent = noteId();
+        editId.textContent = createdAt();
     }
 }
 
@@ -69,12 +69,18 @@ function displayNote() {
     for (let i = 0; i < storedTitles.length; i++) {
         notesHTML += `
             <div class="note">
-                <div id="storedNotesActions">
-                    <button type="button" id="editBtn" onclick="addNewNoteDialog('${storedId[i]}')">✏️</button>
-                    <button type="button" id="delBtn" onclick="deleteNote('${storedId[i]}')">X</button>
+                <div class="note-body">
+                    <h3>${storedTitles[i]}</h3>
+                    <p>${storedContents[i]}</p>
                 </div>
-                <h3>${storedTitles[i]}</h3>
-                <p>${storedContents[i]}</p>
+                <hr>
+                <div class="note-actions">
+                    <p id="date">${createdAt()}</p>
+                    <div class="actions">
+                        <button type="button" id="editBtn" class="btns" onclick="addNewNoteDialog('${storedId[i]}')">✏️</button>
+                        <button type="button" id="delBtn" class="btns" onclick="deleteNote('${storedId[i]}')">X</button>
+                    </div>
+                </div>
             </div>
         `;
     }
@@ -125,6 +131,5 @@ window.addEventListener("DOMContentLoaded",()=>{
         }else{
              themeSelect.value="default";
         }
-        
     }
 });
