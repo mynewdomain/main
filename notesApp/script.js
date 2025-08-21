@@ -70,7 +70,7 @@ function displayNote() {
         notesHTML += `
             <div class="note">
                 <div class="note-body">
-                    <h3>${storedTitles[i]}</h3>
+                    <h3 style="text-align:center">${storedTitles[i]}</h3>
                     <p>${storedContents[i]}</p>
                 </div>
                 <hr>
