@@ -4,9 +4,6 @@ function editMode(id){
     }
     return false;
 }
-function noteId(){
-    return Date.now().toString();
-}
 function openDialog(bg){
     bg.style.display="flex";
 }
@@ -41,4 +38,19 @@ function theme(opt){
     container.style.backgroundColor=back;
     container.style.color=color;
     
+}
+function createdAt(){
+    var d=new Date();
+    var day=d.getDate();
+    var month=d.getMonth()+1;
+    var year=d.getFullYear();
+    var hours=d.getHours();
+    var minutes=d.getMinutes();
+    if(hours<10 || minutes<10){
+        hours="0"+hours;
+        minutes="0"+minutes;
+    }
+    var time=hours+":"+minutes;
+    var date=day+"/"+month+"/"+year+" "+time;
+    return date;
 }
