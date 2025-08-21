@@ -9,6 +9,7 @@ const settingsBg=document.getElementById("settingsBg");
 let notesTitle = createStack("notesTitle");
 let notesContent = createStack("notesContent");
 let notesId = createStack("notesId");
+let notesDate=createStack("notesDate");
 // Προσθήκη και επεξεργασία σημείωσης
 function addNewNoteDialog(id=null) {
     openDialog(addNewNoteBg);
@@ -26,14 +27,14 @@ function addNewNoteDialog(id=null) {
         }else{
              //Αν δεν βρεθεί το id στη λίστα, θεώρησέ το ως νέα σημείωση
             titleInput.textContent="Προσθήκη νέας σημείωσης";
-            editId.textContent = createdAt();
+            editId.textContent = noteId();
             noteTitleToEdit.value="";
             contentInput.value="";
         }
     }else {
         //Κανονική νέα σημείωση
         titleInput.textContent="Προσθήκη νέας σημείωσης";
-        editId.textContent = createdAt();
+        editId.textContent = noteId();
     }
 }
 
@@ -51,10 +52,12 @@ function saveNote(title,contentText,id) {
         pushStart(notesTitle, title);
         pushStart(notesContent, contentText);
         pushStart(notesId, id);
+        pushStart(notesDate,createdAt());
     }
     localStorage.setItem("notesTitle", JSON.stringify(notesTitle));
     localStorage.setItem("notesContent", JSON.stringify(notesContent));
     localStorage.setItem("notesId", JSON.stringify(notesId));
+    localStorage.setItem("notesDate", JSON.stringify(notesDate));
     closeDialog(addNewNoteBg);
     displayNote();
 }
@@ -64,21 +67,22 @@ function displayNote() {
     const storedTitles = JSON.parse(localStorage.getItem("notesTitle") || "[]");
     const storedContents = JSON.parse(localStorage.getItem("notesContent") || "[]");
     const storedId = JSON.parse(localStorage.getItem("notesId") || "[]");
+    const storedDate = JSON.parse(localStorage.getItem("notesDate") || "[]");
     let notesHTML = "";
 
     for (let i = 0; i < storedTitles.length; i++) {
         notesHTML += `
             <div class="note">
                 <div class="note-body">
-                    <h3 style="text-align:center">${storedTitles[i]}</h3>
+                    <h3>${storedTitles[i]}</h3>
                     <p>${storedContents[i]}</p>
                 </div>
-                <hr>
                 <div class="note-actions">
-                    <p id="date">${createdAt()}</p>
-                    <div class="actions">
-                        <button type="button" id="editBtn" class="btns" onclick="addNewNoteDialog('${storedId[i]}')">✏️</button>
-                        <button type="button" id="delBtn" class="btns" onclick="deleteNote('${storedId[i]}')">X</button>
+                    <p id="date">${storedDate[i]}</p>
+                    <hr>
+                    <div class="actionBtns">
+                        <button type="button" id="editBtn" onclick="addNewNoteDialog('${storedId[i]}')">✏️</button>
+                        <button type="button" id="delBtn" onclick="deleteNote('${storedId[i]}')">X</button>
                     </div>
                 </div>
             </div>
