@@ -1,172 +1,44 @@
-*{
+ *{
     margin:0;
     padding:0;
+    box-sizing: border-box;
 }
-#container{
-    width:100%;
-    height:100vh;
-    background-color:cyan;
+#wrapper{
+    min-height:100vh;
+    background-image: url("main-background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-#header{
-    border:1px solid transparent;
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-    align-items: center;
-    height:5vh;
-    padding:2vh;
-    background:white;
-    position:sticky;
-}
-.btns{
-    border-radius:10px;
-    border:none;
-    outline:none;
-    cursor:pointer;
-    padding:10px;
-}
-#noteBtn{
-    background-color:blue;
-    color:white;
-}
-/*add new note dialog*/
-#addNewNoteBg{
-    background:rgb(230, 224, 224);
-    height:100vh;
-    width:100%;
-    z-index:100000;
-    position:fixed;
-    display:none;
-    justify-content:center;
-    align-items:center;
-}
-#addNewNote{
-    display:flex;
-    flex-direction:column;
-    background:white;
-    border-radius:10px;
-    justify-content:center;
-    align-items:center;
-    width:50%;
-    height:fit-content;
-    margin: 20% 20% 20% 20% 
-}
-#dialogWindow{
-    border:1px solid black;
-    width:100%;
-}
-#dialogHeader{
-    width:95%;
-    height:50%;
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-}
-#noteId{
-    display:none;
-}
-#dialogTitle{
-    text-align:center;
-}
-#closeBtn{
-    border:none;
-    outline:none;
-    background:none;
-    padding:2%;
-    cursor:pointer;
-}
-#dialogContent{
-    width:100%;
-    height:50%;
-    display:flex;
-    flex-direction:column;
-}
-.inputs{
-    padding:2%;
-    width:90%;
-    border:none;
-    outline:none;
-    background:rgb(231, 229, 229);
-    border-radius:5px;
-}
-.margins{
-    margin-left:2.5%;
-}
-#noteContent{
-    height:60%
-}
-.buttons{
-    padding:2%;
-    cursor:pointer;
-    border-radius:15%;
-    border:none;
-    outline:none;
-    margin-left:5%;
-}
-#dialogMenu{
-    width:100%;
-    display:flex;
-    flex-direction: row;
-    margin:5%;
-    align-items:center;
-    justify-content:center;
-}
-#cancelBtn{
-    background:red;
-    color:white;
-}
-#SaveBtn{
-    background:blue;
-    color:white;
-}
-/*settings window*/
-#settingsBg{
-    background:rgb(230, 224, 224);
-    height:100vh;
-    width:100%;
-    z-index:100000;
-    position:fixed;
-    display:none;
-    flex-direction:column;
-}
-#form1{
+#container {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
 }
-/*main content*/
-#content{
-    display:flex;
-    flex-wrap:wrap;
-    border:1px solid transparent;
-    height:90vh;
-}
-.note{
-    display:flex;
-    flex-direction:column;
-    background:white;
-    width:25%;
-    height:fit-content;
-    border-radius:5px;
-    margin:1.5%;
-    position:relative;
-}
-#editBtn,#delBtn{
-    width:fit-content;
-    border:none;
-    outline:none;
-    background:none;
+.pages{
+    background-color:white;
+    border:1px solid black;
+    padding:5px;
+    margin:5px;
     cursor:pointer;
-}
-#storedNotesActions{
+    text-align:center;
+    width:150px;      /* default size */
+    max-width: 100%;     /* but never overflow screen */
+    height:100px;
     display:flex;
-    flex-direction:row;
-    justify-content:flex-end;
-    border:1px solid transparent;
-    height:fit-content;
+    justify-content:center;
+    align-items:center;
+    border-radius:20px;
 }
-.note:hover>#storedNotesActions{
+.pages a{
+    text-decoration:none;
+    color:black;
+    font-weight:bold;
+    font-size: 18px;
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
     display:flex;
-}
-.icons{
-    font-size:20px;
+    justify-content:center;
+    align-items:center;
 }
