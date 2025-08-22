@@ -155,6 +155,9 @@
     overflow:hidden;
     margin-bottom:5%;
 }
+.note-body h3{
+    text-align: center;
+}
 #editBtn,#delBtn{
     width:fit-content;
     border:none;
@@ -177,3 +180,4 @@
 .icons{
     font-size:20px;
 }
+
