@@ -46,16 +46,13 @@
                 <option value="light">Φωτεινό</option>
                 <option value="dark">Σκοτεινό</option>
             </select>
-
             <label for="sortNotes">Ταξινόμηση σημειώσεων:</label>
             <select id="sortNotes" class="selects">
-                <option value="date">Κατά ημερομηνία</option>
-                <option value="title">Κατά τίτλο</option>
+                <option value="atoz">Α-Ω</option>
+                <option value="ztoa">Ω-Α</option>
             </select>
-        <label for="fontSize">Μέγεθος Γραμματοσειράς:</label>
-        <input type="range" id="fontSize" min="12" max="24">
 
-        <button onclick="confirmReset()">Διαγραφή όλων των σημειώσεων</button>
+        <button id="deleteAll" class="buttons" onclick="confirmReset()">Διαγραφή όλων των σημειώσεων</button>
     </div>
     <div id="container">
         <div id="header">
@@ -70,5 +67,4 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
-
 </html>
