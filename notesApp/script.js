@@ -20,18 +20,13 @@ displayNote();
 window.addEventListener("DOMContentLoaded",()=>{
     var savedTheme=localStorage.getItem("theme");
     themeSelect.value=savedTheme;
-    var savedThemeColor=localStorage.getItem("themeColor");
+    var savedThemeBg=localStorage.getItem("themeBg");
     var savedColor=localStorage.getItem("color");
-    if(savedThemeColor){
-        container.style.backgroundColor=savedTheme;
+    console.log("savedTheme: "+savedTheme, "savedThemeColor: "+savedThemeBg);
+    if(savedTheme){
+        themeSelect.value=savedTheme;
+        container.style.backgroundColor=savedThemeBg;
         container.style.color=savedColor;
-        if(savedThemeColor=="light"){
-            themeSelect.value="white";
-        }else if(savedThemeColor=="dark"){
-            themeSelect.value="black";
-        }else{
-             themeSelect.value="default";
-        }
     }
 });
 // Προσθήκη και επεξεργασία σημείωσης
@@ -112,7 +107,6 @@ function displayNote() {
         `;
     }
     content.innerHTML = notesHTML;
-
 }
 function deleteNote(id) {
     let index = -1;
