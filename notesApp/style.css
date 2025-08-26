@@ -137,6 +137,9 @@
     width:85%;
     margin-left:10%;
 }
+#deleteAll{
+    background-color: red;
+}
 /*main content*/
 #content{
     display:flex;
@@ -184,5 +187,6 @@
 .icons{
     font-size:20px;
 }
+
 
 
