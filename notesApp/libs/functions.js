@@ -14,6 +14,7 @@ function createdAt(){
     var year=d.getFullYear();
     var hours=d.getHours();
     var minutes=d.getMinutes();
+    console.log(hours,minutes);
     if(hours<10){
         hours="0"+hours;
     }
@@ -52,20 +53,18 @@ function theme(opt){
         mainColor="black";
         theme=opt;
     }else{
-        bg="";
-        mainColor="";
-        theme="";
+        bg="cyan";
+        mainColor="black";
+        theme=opt;
     }
-    var theme=localStorage.getItem("theme");
-    var back=localStorage.getItem("themeBg");
-    var color=localStorage.getItem("color");
     localStorage.setItem("themeBg",bg);
     localStorage.setItem("color",mainColor);
     localStorage.setItem("theme",theme);
-    console.log(back);
+    var theme=localStorage.getItem("theme");
+    var back=localStorage.getItem("themeBg");
+    var color=localStorage.getItem("color");
     container.style.backgroundColor=back;
     container.style.color=color;
-    document.getElementById("themeSelect").value=theme;
 }
 function toDate(dateString) {
     var dateObj = dateString.split(" ");
