@@ -10,6 +10,30 @@ let notesTitle = createStack("notesTitle");
 let notesContent = createStack("notesContent");
 let notesId = createStack("notesId");
 let notesDate=createStack("notesDate");
+var themeSelect=document.getElementById("themeSelect");
+var storedTitles;
+var storedContents;
+var storedId;
+var storedDate;
+// Αρχική εμφάνιση αποθηκευμένων σημειώσεων
+displayNote();
+window.addEventListener("DOMContentLoaded",()=>{
+    var savedTheme=localStorage.getItem("theme");
+    themeSelect.value=savedTheme;
+    var savedThemeColor=localStorage.getItem("themeColor");
+    var savedColor=localStorage.getItem("color");
+    if(savedThemeColor){
+        container.style.backgroundColor=savedTheme;
+        container.style.color=savedColor;
+        if(savedThemeColor=="light"){
+            themeSelect.value="white";
+        }else if(savedThemeColor=="dark"){
+            themeSelect.value="black";
+        }else{
+             themeSelect.value="default";
+        }
+    }
+});
 // Προσθήκη και επεξεργασία σημείωσης
 function addNewNoteDialog(id=null) {
     openDialog(addNewNoteBg);
@@ -64,12 +88,11 @@ function saveNote(title,contentText,id) {
 
 // Προβολή αποθηκευμένων σημειώσεων
 function displayNote() {
-    const storedTitles = JSON.parse(localStorage.getItem("notesTitle") || "[]");
-    const storedContents = JSON.parse(localStorage.getItem("notesContent") || "[]");
-    const storedId = JSON.parse(localStorage.getItem("notesId") || "[]");
-    const storedDate = JSON.parse(localStorage.getItem("notesDate") || "[]");
-    let notesHTML = "";
-
+    storedTitles = JSON.parse(localStorage.getItem("notesTitle") || "[]");
+   storedContents = JSON.parse(localStorage.getItem("notesContent") || "[]");
+    storedId = JSON.parse(localStorage.getItem("notesId") || "[]");
+    storedDate = JSON.parse(localStorage.getItem("notesDate") || "[]");
+    let notesHTML="";
     for (let i = 0; i < storedTitles.length; i++) {
         notesHTML += `
             <div class="note">
@@ -88,24 +111,21 @@ function displayNote() {
             </div>
         `;
     }
-
     content.innerHTML = notesHTML;
+
 }
 function deleteNote(id) {
     let index = -1;
-
     for (let i = 0; i < notesId.length; i++) {
         if (notesId[i] === id) {
             index = i;
             break;
         }
     }
-
     if (index !== -1) {
         notesTitle.splice(index, 1);
         notesContent.splice(index, 1);
         notesId.splice(index, 1);
-
         localStorage.setItem("notesTitle", JSON.stringify(notesTitle));
         localStorage.setItem("notesContent", JSON.stringify(notesContent));
         localStorage.setItem("notesId", JSON.stringify(notesId));
@@ -116,24 +136,41 @@ function deleteNote(id) {
 createNoteBtn.addEventListener("click", addNewNoteDialog);
 // Κουμπί ρυθμισεων
 settingsBtn.addEventListener("click",()=>openDialog(settingsBg));
-var themeSelect=document.getElementById("themeSelect");
+//Κουμπί αλλαγής theme
 themeSelect.addEventListener("change",()=>{
     theme(themeSelect.value);
 });
-// Αρχική εμφάνιση αποθηκευμένων σημειώσεων
-displayNote();
-window.addEventListener("DOMContentLoaded",()=>{
-    var savedTheme=localStorage.getItem("theme");
-    var savedColor=localStorage.getItem("color");
-    if(savedTheme){
-        container.style.backgroundColor=savedTheme;
-        container.style.color=savedColor;
-        if(savedTheme=="light"){
-            themeSelect.value="white";
-        }else if(savedTheme=="dark"){
-            themeSelect.value="black";
-        }else{
-             themeSelect.value="default";
+var sortNotes=document.getElementById("sortNotes");
+sortNotes.addEventListener("change",()=>{
+    var opt=sortNotes.value;
+    var N=storedTitles.length;
+    var condition;
+    for(var i=0;i<N-1;i++){
+        console.log("for I"+[i]);
+        for(var j=0;j<N-i-1;j++){
+            console.log("for J"+[j]);
+            if(opt=="atoz"){
+                condition=storedTitles[j].toLowerCase()>storedTitles[j+1].toLowerCase();    
+            }else if(opt=="ztoa"){
+                condition=storedTitles[j].toLowerCase()<storedTitles[j+1].toLowerCase();
+            }
+            if(condition){
+                console.log("inside if");
+                [storedDate[j],storedDate[j+1]]=[storedDate[j+1],storedDate[j]];
+                [storedTitles[j],storedTitles[j+1]]=[storedTitles[j+1],storedTitles[j]];
+                [storedId[j],storedId[j+1]]=[storedId[j+1],storedId[j]];
+                [storedContents[j],storedContents[j+1]]=[storedContents[j+1],storedContents[j]];
+            }
         }
     }
+    console.log("titles:", storedTitles);
+    console.log("dates:", storedDate);
+    console.log("contents:", storedContents);
+    console.log("ids:", storedId);
+
+    localStorage.setItem("notesTitle", JSON.stringify(storedTitles));
+     localStorage.setItem("notesDates", JSON.stringify(storedDate));
+    localStorage.setItem("notesContent", JSON.stringify(storedContents));
+    localStorage.setItem("notesId", JSON.stringify(storedId));
+    displayNote();
 });
