@@ -5,6 +5,8 @@ const createNoteBtn = document.getElementById("noteBtn");
 const settingsBtn = document.getElementById("settingsBtn");
 const addNewNoteBg=document.getElementById("addNewNoteBg");
 const settingsBg=document.getElementById("settingsBg");
+document.title=appName;
+document.getElementById("title").innerHTML=appName;
 // Φόρτωση stacks από localStorage ή δημιουργία νέων
 let notesTitle = createStack("notesTitle");
 let notesContent = createStack("notesContent");
@@ -168,3 +170,4 @@ sortNotes.addEventListener("change",()=>{
     localStorage.setItem("notesId", JSON.stringify(storedId));
     displayNote();
 });
+
