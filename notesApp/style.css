@@ -47,8 +47,8 @@
     border-radius:10px;
     justify-content:center;
     align-items:center;
-    width:50%;
-    height:fit-content;
+    min-width:90%;
+    min-height:90vh;
     margin: 20% 20% 20% 20% 
 }
 #dialogWindow{
@@ -135,10 +135,13 @@
 }
 .selects{
     width:85%;
-    margin-left:10%;
+    padding:1%;
+    margin:2% 0% 5% 5%;
 }
 #deleteAll{
     background-color: red;
+    border-radius: 10px;
+    width:85%;
 }
 /*main content*/
 #content{
@@ -187,6 +190,3 @@
 .icons{
     font-size:20px;
 }
-
-
-
