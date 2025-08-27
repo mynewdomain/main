@@ -2,7 +2,7 @@ name: Run Announcement Scraper
 
 on:
   schedule:
-    - cron: "0 8,20 * * *"   # τρέχει κάθε μέρα στις 08:00 και 20:00 UTC
+    - cron: "11,23 * * *"   # τρέχει κάθε μέρα στις 08:00 και 20:00 UTC
   workflow_dispatch:          # να μπορείς να το τρέξεις χειροκίνητα
 
 jobs:
