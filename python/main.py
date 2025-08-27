@@ -3,8 +3,7 @@ import requests
 import os
 DISCORD_WEBHOOK = os.getenv("DISCORD_WEBHOOK")
 ANNOUNCEMENTS_URL = os.getenv("ANNOUNCEMENTS_URL")
-#url="https://www.uniwa.gr/category/announcements/"
-file='anakoinwseis.txt'
+file = 'python/anakoinwseis.txt'
 def send_message(message):
     if DISCORD_WEBHOOK:
         requests.post(DISCORD_WEBHOOK, json={
