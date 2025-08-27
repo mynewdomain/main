@@ -2,9 +2,9 @@ name: Run Announcement Scraper
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # τρέχει κάθε μέρα στις 08:00 και 20:00 UTC
-  workflow_dispatch:          # να μπορείς να το τρέξεις χειροκίνητα
-
+    - cron: "0 9 * * *"   # 09:00 UTC = 12:00 Ελλάδας
+    - cron: "0 14 * * *"  # 14:00 UTC = 17:00 Ελλάδας
+  workflow_dispatch:       # κρατάμε και τη χειροκίνητη εκτέλεση
 jobs:
   scrape:
     runs-on: ubuntu-latest
