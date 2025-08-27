@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
+f=open(path,"w")
+f.close()
 def getAnnouncements(site):
     url=site
     response=requests.get(url)
