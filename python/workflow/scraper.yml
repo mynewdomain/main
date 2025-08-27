@@ -3,7 +3,7 @@ name: Run Announcement Scraper
 on:
   schedule:
     - cron: "0 8,20 * * *"   # τρέχει κάθε μέρα στις 08:00 και 20:00 UTC
-  workflow_dispatch:          # να μπορείς να το τρέξεις και χειροκίνητα
+  workflow_dispatch:          # μπορείς να το τρέξεις και χειροκίνητα
 
 jobs:
   scrape:
@@ -28,4 +28,4 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           ANNOUNCEMENTS_URL: ${{ secrets.ANNOUNCEMENTS_URL }}
         run: |
-          python Main.py
+          python python/main.py
