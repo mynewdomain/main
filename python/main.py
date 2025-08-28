@@ -11,7 +11,11 @@ def send_message(message):
         })
 stored_dates = pyScrape.load_data(file)
 storedData = len(stored_dates)
-dates=pyScrape.getAnnouncements(ANNOUNCEMENTS_URL)
+if stored_dates == []:
+    dates = pyScrape.getAnnouncements(ANNOUNCEMENTS_URL)
+    pyScrape.save_data(file, dates)
+else:
+    dates = stored_dates
 newData=len(dates)
 if newData==storedData:
     send_message("Δεν βγήκε ανακοίνωση")
