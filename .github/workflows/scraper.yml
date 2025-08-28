@@ -34,10 +34,10 @@ jobs:
           python python/main.py
 
       - name: Commit updated file
-            if:success()
-              run:|
-                git config --global user.name "github-actions"
-                git config --global user.email "github-actions@github.com"
-                git add python/anakoinwseis.txt
-                git commit -m "Update announcements file" --allow-empty
-                git push
+        if: success()
+        run: |
+            git config --global user.name "github-actions"
+            git config --global user.email "github-actions@github.com"
+            git add python/anakoinwseis.txt
+            git commit -m "Update announcements file" --allow-empty
+            git push
