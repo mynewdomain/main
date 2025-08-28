@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          persist-credentials: true   # επιτρέπει push χωρίς PAT
+          persist-credentials: true   # επιτρέπει push με το default GITHUB_TOKEN
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -34,10 +34,10 @@ jobs:
           python python/main.py
 
       - name: Commit updated file
-        if: success()
+        if: always()
         run: |
-            git config --global user.name "github-actions"
-            git config --global user.email "github-actions@github.com"
-            git add python/anakoinwseis.txt
-            git commit -m "Update announcements file" --allow-empty
-            git push
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add python/anakoinwseis.txt
+          git commit -m "Update announcements file" --allow-empty
+          git push
