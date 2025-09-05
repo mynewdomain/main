@@ -15,11 +15,11 @@
         <div id="addNewNote">
             <div id="dialogHeader">
                 <div id="editId" style="display:none;"></div>
-                <h2 id="dialogTitle"></h2>
-                <button type="button" id="closeBtn" onclick="closeDialog(addNewNoteBg)">X</button>
+                <h2 id="dialogTitle" class="margins"></h2>
+                <button type="button" class="closeBtn" onclick="closeDialog(addNewNoteBg)">X</button>
             </div>
             <div id="dialogContent">
-                <input type="text" id="noteTitle"  class="inputs margins" placeholder="Τίτλος σημείωσης">
+                <input type="text" id="noteTitle" class="inputs margins" placeholder="Τίτλος σημείωσης">
                 <br>
                 <textarea id="noteContentInput" class="inputs margins" placeholder="Γράψτε σημειώσεις εδώ..."></textarea>
             </div>
@@ -39,7 +39,7 @@
     <div id="settingsBg">
         <div style="display:flex; flex-direction: row; justify-content:space-between;">
             <h2>Ρυθμίσεις</h2>
-            <button type="button" id="closeBtn" class="buttons" onclick="closeDialog(settingsBg)">X</button>
+            <button type="button" class="closeBtn" class="buttons" onclick="closeDialog(settingsBg)">X</button>
         </div>
             <label for="themeSelect">Θέμα:</label>
             <select id="themeSelect" class="selects">
