@@ -45,14 +45,13 @@
     flex-direction:column;
     background:white;
     border-radius:10px;
-    justify-content:center;
-    align-items:center;
+   /* justify-content:center;
+    align-items:center;*/
     min-width:90%;
     min-height:90vh;
     margin: 20% 20% 20% 20% 
 }
 #dialogWindow{
-    border:1px solid black;
     width:100%;
 }
 #dialogHeader{
@@ -68,18 +67,27 @@
 #dialogTitle{
     text-align:center;
 }
-#closeBtn{
+.closeBtn{
     border:none;
     outline:none;
     background:none;
     padding:2%;
     cursor:pointer;
 }
+.closeBtn:hover{
+    background:rgb(231, 229, 229);
+    border-radius:10px;
+}
 #dialogContent{
     width:100%;
-    height:50%;
+    height:75vh;
     display:flex;
     flex-direction:column;
+    position:relative;
+}
+#noteContentInput{
+    height:100%;
+    overflow-y: scroll;
 }
 .inputs{
     padding:2%;
@@ -91,9 +99,6 @@
 }
 .margins{
     margin-left:2.5%;
-}
-#noteContent{
-    height:60%
 }
 .buttons{
     padding:2%;
@@ -142,6 +147,7 @@
     background-color: red;
     border-radius: 10px;
     width:85%;
+    color:white;
 }
 /*main content*/
 #content{
@@ -190,4 +196,3 @@
 .icons{
     font-size:20px;
 }
-
