@@ -1,7 +1,7 @@
 var container=document.getElementById("container");
-var pageNames=["Weatherify","Notehub","Pacman","Quotes","Currency Converter","Password Manager","HealthTracker","Test"];
-var pageBgImg=["../weatherApp/assets/images/sky.jpg","../notesApp/images/note.png","","","","","../healthApp/images/healthIcon.png",""];
-var pageURLS=["../weatherApp","../notesApp","../pacman","../quoteApp","../currencyConverter","../passMan","../healthApp","../test"];
+var pageNames=["Weatherify","Notehub","Pacman""Currency Converter","Password Manager","HealthTracker"];
+var pageBgImg=["../weatherApp/assets/images/sky.jpg","../notesApp/images/note.png","","","","../healthApp/images/healthIcon.png"];
+var pageURLS=["../weatherApp","../notesApp","../pacman""../currencyConverter","../passMan","../healthApp"];
 for(var i=0;i<pageNames.length;i++){
     var page=document.createElement("div");
     page.className="pages";
@@ -16,3 +16,4 @@ for(var i=0;i<pageNames.length;i++){
     page.appendChild(link);
     container.appendChild(page);
 }
+
