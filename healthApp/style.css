@@ -1,0 +1,227 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    background:cyan;
+}
+/*=====CLASSES=====*/
+.headerMargins{
+    margin-left:2.5%;
+}
+.closeBtn{
+    border:none;
+    outline:none;
+    background:none;
+    padding:2%;
+    cursor:pointer;
+}
+.mainContent{
+    flex:1;
+    border:1px solid black;
+}
+.tableProp{
+    width:100%;
+    table-layout: fixed;
+    background: white;
+}
+.tblCaption{
+    font-weight:bold;
+    text-decoration: underline;
+    padding:2%;
+    background: white;
+}
+.tblrowsBack{
+    background:#e6e2e2;
+}
+.tblHr{
+    width:100%;
+    height:5%;
+}
+.tblDt{
+    border-collapse: collapse;
+    padding: 5px;
+    width:50%;
+    height:5%;
+    text-align: center;
+}
+.tblBtns{
+    border:none;
+    background:none;
+    cursor:pointer;
+}
+.board{
+    width:80%;
+    height:70vh;
+    background:transparent;
+    border-left:3px solid black;
+    border-bottom:3px solid black;
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+   /* align-items: flex-end;*/
+    
+}
+.toolContainer{
+    display:flex;
+    flex-direction:row;
+    align-items: flex-end;
+    height:70vh;
+    width:100%;
+    /*border:1px solid black;*/
+}
+.barDialog{
+    /*border:1px solid black;*/
+    padding:1%;
+    width:fit-content;
+    height:5%;
+    margin-right: 6%;
+    background:rgb(207, 199, 199);
+}
+.chart{
+    width:5%;
+    margin-right: 5%;
+    margin-top:10%;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom:0;
+}
+.barContainer{
+    /*border:1px solid black;*/
+    display:flex;
+    height:fit-content;
+    align-items:flex-end;
+    width:100%;
+    height:50%;
+   /*transform:rotateX(180deg);*/
+}
+.logoBg{
+    background-image: url('./images/healthIcon.png');
+    background-size: contain;/*for logos*/
+    background-repeat: no-repeat;
+    width:100%;
+    height:100%;
+}
+/*=====Dialog======*/
+#dialogBg{
+    background:rgb(230, 224, 224);
+    height:100vh;
+    width:100%;
+    z-index:100000;
+    position:fixed;
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+#dialog{
+    display:flex;
+    flex-direction:column;
+    background:white;
+    border-radius:10px;
+    min-width:70%;
+    min-height:60vh;
+    position:relative;
+}
+#dialogHeader{
+    display:flex;
+    flex-direction: row;
+    height:12vh;
+    justify-content: space-between;
+}
+#mode{
+    display:flex;
+    align-items: center;
+}
+#dialogContent{
+    /*border:1px solid black;*/
+    width:100%;
+    height:55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#form1{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    height:100%;
+}
+input,#submitBtn,select{
+    padding:1%;
+    margin:3%;
+    height:7vh;
+    border-radius:10px;
+    cursor:pointer;
+}
+input[type="text"]{
+    border:none;
+    outline:1px solid black;
+}
+input:disabled{
+    display:none;
+}
+#submitBtn{
+    border:none;
+    outline:none;
+    background:blue;
+    color:white;
+}
+/*=========Site=======*/
+#wrapper{
+    min-height:100vh;
+}
+#container{
+    width:100%;
+    height:100vh;
+}
+#header{
+    display:flex;
+    flex-direction: row;
+    height:15vh;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom:1px solid black;
+}
+.Btns{
+    padding:1.5%;
+    border-radius:10px;
+    border:none;
+    outline:none;
+    background:blue;
+    color:white;
+    cursor:pointer;
+}
+/*========Main========*/
+#main{
+    display:flex;
+    flex-direction: row;
+    border:1px solid red;
+    min-height:100vh;
+}
+#chart{
+    min-height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#logoCont{
+    width:7%;
+    height:100%;
+    position:relative;
+}
+@media screen and (max-width:800px) {
+    #main{
+        flex-direction: column;
+    }
+    #chart{
+        margin-top: 5%;
+    }
+    #logoCont{
+        width:14%;
+        height:100%;
+        position:relative;
+    }
+}
