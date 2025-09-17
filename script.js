@@ -1,6 +1,6 @@
 var container=document.getElementById("container");
 var pageNames=["Weatherify","Notehub","HealthTracker"];
-var pageBgImg=["../weatherApp/assets/images/sky.jpg","","./healthApp/images/healthIcon.png"];
+var pageBgImg=["../weatherApp/assets/images/sky.jpg","./notesApp/images/note.png","./healthApp/images/healthIcon.png"];
 var pageURLS=["./weatherApp","./notesApp","./healthApp"];
 for(var i=0;i<pageNames.length;i++){
     var page=document.createElement("div");
@@ -16,5 +16,6 @@ for(var i=0;i<pageNames.length;i++){
     page.appendChild(link);
     container.appendChild(page);
 }
+
 
 
