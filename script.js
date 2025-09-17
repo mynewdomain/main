@@ -1,35 +1,18 @@
-let catSelect=document.getElementById('catSelect');
-window.addEventListener('DOMContentLoaded',function(){
-    getCategories(catSelect);
-    var option=catSelect.value;
-    table(document.getElementById('measTable'),option);
-    chart(option);
-    getSession('store');
-});
-var base;
-var state;
-var mode;
-let addBtn=document.getElementById("addBtn");
-addBtn.addEventListener("click",function(){
-    base=document.getElementById("container");
-    state=0;
-    mode='';
-    showDialog(base,state,mode);
-});
-let addCatBtn=document.getElementById("addCatBtn");
-addCatBtn.addEventListener("click",function(){
-    base=document.getElementById("container");
-    state=0;
-    categoryDialog(base,state);
-});
-catSelect.addEventListener("change",function(){
-  var option=catSelect.value;
-  localStorage.setItem('store',JSON.stringify(option));
-  //console.log(option);
-  table(document.getElementById('measTable'),option);
-  chart(option);
-  setSession('store',option);
-});
-
-var logo=document.getElementById('logo');
-logo.classList.add('logoBg');
+var container=document.getElementById("container");
+var pageNames=["Weatherify","Notehub","Pacman","Quotes","Currency Converter","Password Manager","HealthTracker","Test"];
+var pageBgImg=["../weatherApp/assets/images/sky.jpg","../notesApp/images/note.png","","","","","../healthApp/images/healthIcon.png",""];
+var pageURLS=["../weatherApp","../notesApp","../pacman","../quoteApp","../currencyConverter","../passMan","../healthApp","../test"];
+for(var i=0;i<pageNames.length;i++){
+    var page=document.createElement("div");
+    page.className="pages";
+    var link = document.createElement("a");
+    link.style.backgroundImage="url("+pageBgImg[i]+")";
+    link.style.backgroundRepeat="no-repeat";
+    link.style.backgroundPosition="center";
+    link.style.backgroundSize="contain";
+    link.textContent=pageNames[i];
+    link.href = pageURLS[i];
+    link.style.textDecoration = "none";
+    page.appendChild(link);
+    container.appendChild(page);
+}
