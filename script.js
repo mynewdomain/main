@@ -16,8 +16,4 @@ for(var i=0;i<pageNames.length;i++){
     page.appendChild(link);
     container.appendChild(page);
 }
-
-
-
-
-
+document.title=appName;
