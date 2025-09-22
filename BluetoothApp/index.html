@@ -61,12 +61,12 @@
       btn.classList.remove("on", "off");
       if(count%2==0){
         c=1;
-        btn.textContent="LED OFF";
-        btn.classList.add("off");
-      }else{
-        c=0;
         btn.textContent="LED ON";
         btn.classList.add("on");
+      }else{
+        c=0;
+        btn.textContent="LED OFF";
+        btn.classList.add("off");
       }
       if (!characteristic) return log("Not connected.");
       await characteristic.writeValue(new TextEncoder().encode(c.toString()));
