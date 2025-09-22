@@ -18,6 +18,12 @@
     button:active { transform: scale(0.95); }
     #on { background-color: #4CAF50; }  /* green */
     #off { background-color: #f44336; } /* red */
+    .on{
+      background-color: #4CAF50;
+    }
+    .off{
+      background-color: #f44336;
+    }
     #log { border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: auto; text-align: left; margin-top: 20px; background: white; }
   </style>
 </head>
@@ -25,11 +31,11 @@
   <h2>HM-10 LED Control</h2>
   <button id="connect">Connect to HM-10</button>
   <div>
-    <button id="on">LED ON</button>
-    <button id="off">LED OFF</button>
+    <!--<button id="on">LED ON</button>
+    <button id="off">LED OFF</button>-->
+    <button id="controler"></button>
   </div>
   <div id="log"></div>
-
   <script>
     let device, characteristic;
 
@@ -40,33 +46,47 @@
           filters: [{ namePrefix: 'HM' }], // HM-10 usually starts with "HM"
           optionalServices: [0xFFE0]
         });
-
         const server = await device.gatt.connect();
         const service = await server.getPrimaryService(0xFFE0);
         characteristic = await service.getCharacteristic(0xFFE1);
-
         log("Connected to " + device.name);
       } catch (error) {
         log("Error: " + error);
       }
     }
-
     // Send a single character ('0' or '1')
-    async function sendChar(c) {
+    var count=0;
+    async function sendChar() {
+      var c=0;
+      btn.classList.remove("on", "off");
+      if(count%2==0){
+        c=1;
+        btn.textContent="LED OFF";
+        btn.classList.add("off");
+      }else{
+        c=0;
+        btn.textContent="LED ON";
+        btn.classList.add("on");
+      }
       if (!characteristic) return log("Not connected.");
-      await characteristic.writeValue(new TextEncoder().encode(c));
+      await characteristic.writeValue(new TextEncoder().encode(c.toString()));
       log("Sent: " + c);
+      count++;
     }
-
     function log(msg) {
       const logDiv = document.getElementById("log");
       logDiv.innerHTML += msg + "<br>";
       logDiv.scrollTop = logDiv.scrollHeight;
     }
-
     document.getElementById("connect").addEventListener("click", connect);
-    document.getElementById("on").addEventListener("click", () => sendChar('1'));
-    document.getElementById("off").addEventListener("click", () => sendChar('0'));
+    //document.getElementById("on").addEventListener("click", () => sendChar('1'));
+   // document.getElementById("off").addEventListener("click", () => sendChar('0'));
+   var btn=document.getElementById("controler");
+    btn.classList.add("off");
+    btn.textContent="LED OFF";
+    btn.addEventListener("click", function(){
+      sendChar();
+    });
   </script>
 </body>
 </html>
