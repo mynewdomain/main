@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HM-10 LED Control</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; background: #f5f5f5; }
+    button {
+      margin: 15px;
+      padding: 20px 40px;
+      font-size: 24px;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+    button:active { transform: scale(0.95); }
+    #on { background-color: #4CAF50; }  /* green */
+    #off { background-color: #f44336; } /* red */
+    #log { border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: auto; text-align: left; margin-top: 20px; background: white; }
+  </style>
+</head>
+<body>
+  <h2>HM-10 LED Control</h2>
+  <button id="connect">Connect to HM-10</button>
+  <div>
+    <button id="on">LED ON</button>
+    <button id="off">LED OFF</button>
+  </div>
+  <div id="log"></div>
 
+  <script>
+    let device, characteristic;
+
+    // Connect to HM-10
+    async function connect() {
+      try {
+        device = await navigator.bluetooth.requestDevice({
+          filters: [{ namePrefix: 'HM' }], // HM-10 usually starts with "HM"
+          optionalServices: [0xFFE0]
+        });
+
+        const server = await device.gatt.connect();
+        const service = await server.getPrimaryService(0xFFE0);
+        characteristic = await service.getCharacteristic(0xFFE1);
+
+        log("Connected to " + device.name);
+      } catch (error) {
+        log("Error: " + error);
+      }
+    }
+
+    // Send a single character ('0' or '1')
+    async function sendChar(c) {
+      if (!characteristic) return log("Not connected.");
+      await characteristic.writeValue(new TextEncoder().encode(c));
+      log("Sent: " + c);
+    }
+
+    function log(msg) {
+      const logDiv = document.getElementById("log");
+      logDiv.innerHTML += msg + "<br>";
+      logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    document.getElementById("connect").addEventListener("click", connect);
+    document.getElementById("on").addEventListener("click", () => sendChar('1'));
+    document.getElementById("off").addEventListener("click", () => sendChar('0'));
+  </script>
+</body>
+</html>
