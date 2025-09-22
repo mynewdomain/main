@@ -1,65 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HM-10 LED Control</title>
-  <style>
-    body { font-family: sans-serif; text-align: center; padding: 20px; background: #f5f5f5; }
-    button {
-      margin: 15px;
-      padding: 20px 40px;
-      font-size: 24px;
-      border: none;
-      border-radius: 12px;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.1s;
-    }
-    button:active { transform: scale(0.95); }
-    #on { background-color: #4CAF50; }  /* green */
-    #off { background-color: #f44336; } /* red */
-    .on{
-      background-color: #4CAF50;
-    }
-    .off{
-      background-color: #f44336;
-    }
-    #log { border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: auto; text-align: left; margin-top: 20px; background: white; }
-  </style>
-</head>
-<body>
-  <h2>HM-10 LED Control</h2>
-  <button id="connect">Connect to HM-10</button>
-  <div>
-    <!--<button id="on">LED ON</button>
-    <button id="off">LED OFF</button>-->
-    <button id="controler"></button>
-  </div>
-  <div id="log"></div>
-  <script>
-    let device, characteristic;
-
-    // Connect to HM-10
-    async function connect() {
-      try {
-        device = await navigator.bluetooth.requestDevice({
-          filters: [{ namePrefix: 'HM' }], // HM-10 usually starts with "HM"
-          optionalServices: [0xFFE0]
-        });
-        const server = await device.gatt.connect();
-        const service = await server.getPrimaryService(0xFFE0);
-        characteristic = await service.getCharacteristic(0xFFE1);
-        log("Connected to " + device.name);
-      } catch (error) {
-        log("Error: " + error);
-      }
-    }
-    // Send a single character ('0' or '1')
-    var count=0;
+ // Send a single character ('0' or '1')
+    var count=1;
     async function sendChar() {
-      var c=0;
+      var c;
       btn.classList.remove("on", "off");
-      if(count%2==0){
+      if(count%2==1){
         c=1;
         btn.textContent="LED ON";
         btn.classList.add("on");
@@ -73,18 +17,3 @@
       log("Sent: " + c);
       count++;
     }
-    function log(msg) {
-      const logDiv = document.getElementById("log");
-      logDiv.innerHTML += msg + "<br>";
-      logDiv.scrollTop = logDiv.scrollHeight;
-    }
-    document.getElementById("connect").addEventListener("click", connect);
-   var btn=document.getElementById("controler");
-    btn.classList.add("off");
-    btn.textContent="LED OFF";
-    btn.addEventListener("click", function(){
-      sendChar();
-    });
-  </script>
-</body>
-</html>
