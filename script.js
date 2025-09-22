@@ -1,7 +1,7 @@
 var container=document.getElementById("container");
 var pageNames=["Weatherify","Notehub","Pacman","Currency Converter","Password Manager","HealthTracker","Bluetooth controller"];
-var pageBgImg=["../weatherApp/assets/images/sky.jpg","../notesApp/images/note.png","","","","../healthApp/images/healthIcon.png"];
-var pageURLS=["../weatherApp","../notesApp","../pacman","../currencyConverter","../passMan","../healthApp","BluetoothApp];
+var pageBgImg=["../weatherApp/assets/images/sky.jpg","../notesApp/images/note.png","","","","../healthApp/images/healthIcon.png",""];
+var pageURLS=["../weatherApp","../notesApp","../pacman","../currencyConverter","../passMan","../healthApp","../BluetoothApp"];
 for(var i=0;i<pageNames.length;i++){
     var page=document.createElement("div");
     page.className="pages";
@@ -16,6 +16,7 @@ for(var i=0;i<pageNames.length;i++){
     page.appendChild(link);
     container.appendChild(page);
 }
+
 
 
 
