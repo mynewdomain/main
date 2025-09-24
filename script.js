@@ -1,7 +1,8 @@
 var container=document.getElementById("container");
-var pageNames=["Weatherify","Notehub","Pacman","Currency Converter","Password Manager","HealthTracker","Bluetooth controller"];
-var pageBgImg=["../weatherApp/assets/images/sky.jpg","../notesApp/images/note.png","","","","../healthApp/images/healthIcon.png",""];
-var pageURLS=["../weatherApp","../notesApp","../pacman","../currencyConverter","../passMan","../healthApp","../BluetoothApp"];
+var usAg=navigator.userAgent;
+var pageNames=["Weatherify","Notehub","Pacman","Quotes","Currency Converter","Password Manager","HealthTracker","Triliza","Test","Bluetooth Controler"];
+var pageBgImg=["../weatherApp/assets/images/sky.jpg","../notesApp/images/note.png","","","","","../healthApp/images/healthIcon.png","","",""];
+var pageURLS=["../weatherApp","../notesApp","../pacman","../quoteApp","../currencyConverter","../passMan","../healthApp","../triliza","../test","../BluetoothApp"];
 for(var i=0;i<pageNames.length;i++){
     var page=document.createElement("div");
     page.className="pages";
@@ -12,6 +13,12 @@ for(var i=0;i<pageNames.length;i++){
     link.style.backgroundSize="contain";
     link.textContent=pageNames[i];
     link.href = pageURLS[i];
+    if(!pageURLS[i]){
+        link.href="../404";
+    }
+    if(usAg.toLowerCase().includes('android') && pageNames[i]=="Bluetooth Controler"){
+        link.target='_blank';
+    }
     link.style.textDecoration = "none";
     page.appendChild(link);
     container.appendChild(page);
