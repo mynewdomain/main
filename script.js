@@ -16,11 +16,14 @@ for(var i=0;i<pageNames.length;i++){
     if(!pageURLS[i]){
         link.href="../404";
     }
-    if(usAg.toLowerCase().includes('android') && pageNames[i]=="Bluetooth Controler"){
-        link.target='_blank';
-    }
     link.style.textDecoration = "none";
     page.appendChild(link);
     container.appendChild(page);
+    if(usAg.toLowerCase().includes('android') && pageNames[i]=="Bluetooth Controler"){
+        link.addEventListener("click",function(e){
+            e.preventDefault();
+            window.open(this.href,"_blank");
+        });
+    }
 }
 document.title=appName;
