@@ -14,8 +14,13 @@
       color: white;
       cursor: pointer;
       transition: transform 0.1s;
+      background: blue;
     }
     button:active { transform: scale(0.95); }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
     #on { background-color: #4CAF50; }  /* green */
     #off { background-color: #f44336; } /* red */
     .on{
@@ -31,61 +36,79 @@
   <h2>HM-10 LED Control</h2>
   <button id="connect">Connect to HM-10</button>
   <div>
-    <!--<button id="on">LED ON</button>
-    <button id="off">LED OFF</button>-->
     <button id="controler"></button>
   </div>
   <div id="log"></div>
-
   <script>
     let device, characteristic;
-
     // Connect to HM-10
+    var conn=false;
     async function connect() {
-      try {
-        device = await navigator.bluetooth.requestDevice({
-          filters: [{ namePrefix: 'HM' }], // HM-10 usually starts with "HM"
-          optionalServices: [0xFFE0]
-        });
-
-        const server = await device.gatt.connect();
-        const service = await server.getPrimaryService(0xFFE0);
-        characteristic = await service.getCharacteristic(0xFFE1);
-
-        log("Connected to " + device.name);
-      } catch (error) {
-        log("Error: " + error);
-      }
+        try {
+          if(!conn){
+            device = await navigator.bluetooth.requestDevice({
+              filters: [{ namePrefix: 'HM' }], // HM-10 usually starts with "HM"
+              optionalServices: [0xFFE0]
+            });
+            const server = await device.gatt.connect();
+            const service = await server.getPrimaryService(0xFFE0);
+            characteristic = await service.getCharacteristic(0xFFE1);
+            btn.disabled = false;
+            log("Connected to " + device.name);
+            conn=true;
+            connBtn.textContent="Disconnect from HM-10";
+            device.addEventListener('gattserverdisconnected',function(){
+              log('Device disconnected.');
+              conn=false;
+              connBtn.textContent="Connect to HM-10";
+              btn.disabled = true;
+            });
+          }else{
+            if (device && device.gatt.connected) {
+              device.gatt.disconnect();
+              log("Disconnected from " + device.name);
+              btn.disabled = true;
+            }
+            conn=false;
+            connBtn.textContent="Connect to HM-10";
+          }
+        } catch (error) {
+          log("Error: " + error);
+        }
     }
 
     // Send a single character ('0' or '1')
-    var count=1;
+    var state=false;
     async function sendChar() {
       var c;
       btn.classList.remove("on", "off");
-      if(count%2==1){
+      if(!state){
         c=1;
-        btn.textContent="LED ON";
+        btn.textContent="TURN LED OFF";
         btn.classList.add("on");
+        state=true;
       }else{
         c=0;
-        btn.textContent="LED OFF";
+        btn.textContent="TURN LED ON";
         btn.classList.add("off");
+        state=false;
       }
       if (!characteristic) return log("Not connected.");
       await characteristic.writeValue(new TextEncoder().encode(c.toString()));
       log("Sent: " + c);
-      count++;
     }
     function log(msg) {
       const logDiv = document.getElementById("log");
       logDiv.innerHTML += msg + "<br>";
       logDiv.scrollTop = logDiv.scrollHeight;
     }
-    document.getElementById("connect").addEventListener("click", connect);
+    var connBtn=document.getElementById('connect');
+    connBtn.textContent="Connect to HM-10";
+    connBtn.addEventListener("click", connect);
    var btn=document.getElementById("controler");
     btn.classList.add("off");
-    btn.textContent="LED OFF";
+    btn.textContent="TURN LED ON";
+    btn.disabled = true;
     btn.addEventListener("click", function(){
       sendChar();
     });
