@@ -85,12 +85,12 @@
       if(!state){
         c=1;
         btn.textContent="TURN LED OFF";
-        btn.classList.add("on");
+        btn.classList.add("off");
         state=true;
       }else{
         c=0;
         btn.textContent="TURN LED ON";
-        btn.classList.add("off");
+        btn.classList.add("on");
         state=false;
       }
       if (!characteristic) return log("Not connected.");
@@ -106,7 +106,7 @@
     connBtn.textContent="Connect to HM-10";
     connBtn.addEventListener("click", connect);
    var btn=document.getElementById("controler");
-    btn.classList.add("off");
+    btn.classList.add("on");
     btn.textContent="TURN LED ON";
     btn.disabled = true;
     btn.addEventListener("click", function(){
