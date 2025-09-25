@@ -13,7 +13,7 @@ for(var i=0;i<pageNames.length;i++){
     link.style.backgroundSize="contain";
     link.textContent=pageNames[i];
     link.href = pageURLS[i];
-    if(!pageURLS[i]){
+    if(pageURLS[i]==""){
         link.href="../404";
     }
     link.style.textDecoration = "none";
@@ -22,4 +22,5 @@ for(var i=0;i<pageNames.length;i++){
 }
 document.title=appName;
 document.getElementById('favicon').href=favicon;
+
 
