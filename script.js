@@ -2,7 +2,7 @@ var container=document.getElementById("container");
 var usAg=navigator.userAgent;
 var pageNames=["Weatherify","Notehub","Pacman","Quotes","Currency Converter","Password Manager","HealthTracker","Triliza","Test","Bluetooth Controler"];
 var pageBgImg=["../weatherApp/assets/images/sky.jpg","../notesApp/images/note.png","","","","","../healthApp/images/healthIcon.png","","",""];
-var pageURLS=["../weatherApp","../notesApp","../pacman","../quoteApp","../currencyConverter","../passMan","../healthApp","../triliza","../test","../BluetoothApp"];
+var pageURLS=["../weatherApp","../notesApp","","","","","../healthApp","","","../BluetoothApp"];
 for(var i=0;i<pageNames.length;i++){
     var page=document.createElement("div");
     page.className="pages";
@@ -22,3 +22,4 @@ for(var i=0;i<pageNames.length;i++){
 }
 document.title=appName;
 document.getElementById('favicon').href=favicon;
+
